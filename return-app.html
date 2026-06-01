@@ -19,8 +19,11 @@
   --nav:52px;--tab:58px;
 }
 html{font-size:15px}
-body{font-family:var(--sans);background:var(--clay-xx);color:var(--ink);min-height:100vh;overflow-x:hidden}
-button{cursor:pointer;font-family:var(--sans);font-size:13px;-webkit-appearance:none}
+body{font-family:var(--sans);background:linear-gradient(180deg,#FBF6F1 0%,#F7EEE3 50%,#F3E5DA 100%);color:var(--ink);min-height:100vh;overflow-x:hidden;position:relative}
+body::before{content:'';position:absolute;top:-12%;right:-8%;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.12),transparent 60%);pointer-events:none}
+body::after{content:'';position:absolute;bottom:-10%;left:-10%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(166,124,91,.08),transparent 55%);pointer-events:none}
+button{cursor:pointer;font-family:var(--sans);font-size:13px;transition:transform .2s ease,box-shadow .2s ease}
+button:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(42,31,20,.08)}
 input,select,textarea{font-family:var(--sans);-webkit-appearance:none;border-radius:0}
 
 /* NAV */
@@ -51,20 +54,20 @@ input,select,textarea{font-family:var(--sans);-webkit-appearance:none;border-rad
 .pg-sub{font-size:12px;color:var(--ink3);margin-bottom:16px;letter-spacing:.04em}
 
 /* CARDS */
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.scard{background:#fff;border:1px solid var(--bd);border-radius:var(--rl);padding:12px 14px}
-.scard-lbl{font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
-.scard-val{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--ink);line-height:1}
-.scard-hint{font-size:11px;color:var(--clay);margin-top:3px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.scard{background:rgba(255,255,255,.95);border:1px solid rgba(166,124,91,.14);border-radius:18px;padding:18px 18px;box-shadow:0 18px 40px rgba(42,31,20,.06)}
+.scard-lbl{font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.scard-val{font-family:var(--serif);font-size:24px;font-weight:300;color:var(--ink);line-height:1.1}
+.scard-hint{font-size:11px;color:var(--clay);margin-top:6px}
 .scard-hint.ok{color:var(--ok)}
 .scard-hint.ng{color:var(--ng)}
-.card{background:#fff;border:1px solid var(--bd);border-radius:var(--rl);overflow:hidden;margin-bottom:12px}
-.card-hdr{padding:11px 14px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;background:var(--clay-xx)}
+.card{background:rgba(255,255,255,.96);border:1px solid rgba(166,124,91,.14);border-radius:20px;overflow:hidden;margin-bottom:16px;box-shadow:0 22px 52px rgba(42,31,20,.07)}
+.card-hdr{padding:14px 18px;border-bottom:1px solid rgba(166,124,91,.12);display:flex;align-items:center;justify-content:space-between;background:rgba(242,234,224,.85)}
 .card-t{font-size:13px;font-weight:500;color:var(--ink);letter-spacing:.04em}
-.empty-msg{padding:18px 14px;font-size:13px;color:var(--ink3);text-align:center}
+.empty-msg{padding:22px 18px;font-size:13px;color:var(--ink3);text-align:center}
 
 /* BK LIST */
-.bk-item{padding:12px 14px;border-bottom:1px solid rgba(166,124,91,.08);display:flex;align-items:flex-start;gap:10px}
+.bk-item{padding:14px 16px;border-bottom:1px solid rgba(166,124,91,.08);display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,.94);border-radius:18px}
 .bk-item:last-child{border-bottom:none}
 .bk-time{font-size:12px;font-weight:600;color:var(--ink);min-width:44px;flex-shrink:0}
 .bk-info{flex:1;min-width:0}
@@ -72,52 +75,52 @@ input,select,textarea{font-family:var(--sans);-webkit-appearance:none;border-rad
 .bk-meta{font-size:11px;color:var(--ink3);margin-top:2px}
 .bk-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
 .bk-amt{font-family:var(--serif);font-size:15px;color:var(--clay-d)}
-.bdg{display:inline-block;padding:2px 8px;border-radius:99px;font-size:10px}
+.bdg{display:inline-block;padding:4px 10px;border-radius:999px;font-size:10px}
 .bdg-ok{background:var(--clay-xl);color:var(--clay-d)}
 .bdg-pend{background:#F5E8D0;color:#8B6020}
 .bdg-no{background:#f0edea;color:var(--ink3)}
 .bdg-ok2{background:var(--ok-l);color:var(--ok)}
 .bdg-ng{background:var(--ng-l);color:var(--ng)}
-.btn-xs{padding:4px 10px;border-radius:var(--r);border:1px solid var(--bd2);background:none;color:var(--ink2);font-size:11px;white-space:nowrap;transition:all .15s}
+.btn-xs{padding:6px 10px;border-radius:18px;border:1px solid var(--bd2);background:none;color:var(--ink2);font-size:11px;white-space:nowrap;transition:all .15s}
 .btn-xs:hover{border-color:var(--clay);color:var(--clay)}
 .btn-xs.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
 .btn-xs.clay{background:var(--clay);color:#fff;border-color:var(--clay)}
 .btn-xs.ng{background:var(--ng-l);color:var(--ng);border-color:var(--ng)}
 
 /* WEEK */
-.week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:12px}
-.wd{background:#fff;border:1px solid var(--bd);border-radius:var(--r);padding:6px 3px;min-height:68px}
+.week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px}
+.wd{background:rgba(255,255,255,.98);border:1px solid rgba(166,124,91,.16);border-radius:18px;padding:12px 8px;min-height:84px;box-shadow:0 16px 36px rgba(42,31,20,.08);display:flex;flex-direction:column;justify-content:space-between}
 .wd.today{border-color:var(--clay)}
-.wd-lbl{font-size:9px;color:var(--ink3);text-align:center}
-.wd-date{font-family:var(--serif);font-size:14px;color:var(--ink);text-align:center;margin:1px 0 4px}
-.wd-ev{background:var(--clay-xl);border-radius:2px;padding:2px 3px;font-size:8px;color:var(--clay-d);margin-bottom:2px;cursor:pointer;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.wd-ev:hover{background:var(--clay-l);color:#fff}
+.wd-lbl{font-size:10px;color:var(--ink3);text-align:center;letter-spacing:.08em;text-transform:uppercase}
+.wd-date{font-family:var(--serif);font-size:16px;color:var(--ink);text-align:center;margin:4px 0 8px}
+.wd-ev{background:rgba(166,124,91,.12);border-radius:12px;padding:6px 8px;font-size:11px;color:var(--clay-d);margin-bottom:6px;cursor:pointer;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;transition:background .15s,color .15s}
+.wd-ev:hover{background:var(--clay);color:#fff}
 
 /* TABLE */
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tbl{width:100%;border-collapse:collapse;min-width:460px}
-.tbl th{text-align:left;font-size:10px;color:var(--ink3);padding:7px 10px;border-bottom:1px solid var(--bd);background:var(--clay-xx);font-weight:400;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-.tbl td{padding:9px 10px;font-size:12px;color:var(--ink2);border-bottom:1px solid rgba(166,124,91,.08);white-space:nowrap}
+.tbl th{text-align:left;font-size:10px;color:var(--ink3);padding:9px 12px;border-bottom:1px solid rgba(166,124,91,.12);background:rgba(242,234,224,.9);font-weight:400;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.tbl td{padding:11px 12px;font-size:12px;color:var(--ink2);border-bottom:1px solid rgba(166,124,91,.08);white-space:nowrap}
 .tbl tr:last-child td{border-bottom:none}
-.tbl tr:hover td{background:var(--clay-xx)}
+.tbl tr:hover td{background:rgba(242,234,224,.7)}
 
 /* CLIENTS */
 .search-wrap{position:relative;margin-bottom:12px}
-.search-inp{width:100%;padding:12px 14px 12px 38px;border:1px solid var(--bd2);border-radius:var(--r);font-size:14px;color:var(--ink);background:#fff;outline:none;transition:border .15s}
-.search-inp:focus{border-color:var(--clay)}
+.search-inp{width:100%;padding:12px 14px 12px 38px;border:1px solid rgba(166,124,91,.16);border-radius:18px;font-size:14px;color:var(--ink);background:rgba(255,255,255,.95);outline:none;transition:border .15s,box-shadow .15s}
+.search-inp:focus{border-color:var(--clay);box-shadow:0 8px 24px rgba(166,124,91,.08)}
 .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none}
-.cl-card{background:#fff;border:1px solid var(--bd);border-radius:var(--rl);margin-bottom:8px;overflow:hidden}
-.cl-hdr{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.cl-hdr:hover{background:var(--clay-xx)}
+.cl-card{background:rgba(255,255,255,.95);border:1px solid rgba(166,124,91,.14);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:0 18px 42px rgba(42,31,20,.06)}
+.cl-hdr{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.cl-hdr:hover{background:rgba(242,234,224,.7)}
 .cl-name{font-family:var(--tc);font-size:14px;color:var(--ink)}
 .cl-meta{font-size:11px;color:var(--ink3);margin-top:1px}
 .cl-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .cl-pkg-tag{font-size:10px;padding:2px 8px;border-radius:99px;background:var(--clay-xl);color:var(--clay-d);white-space:nowrap}
 .cl-visits{font-family:var(--serif);font-size:18px;color:var(--clay-d);text-align:right}
 .cl-visits-lbl{font-size:9px;color:var(--ink3)}
-.cl-body{border-top:1px solid var(--bd);padding:14px;background:var(--clay-xx);display:none}
+.cl-body{border-top:1px solid rgba(166,124,91,.12);padding:16px;background:rgba(242,234,224,.75);display:none}
 .cl-body.open{display:block}
-.cl-field{margin-bottom:10px}
+.cl-field{margin-bottom:12px}
 .cl-field label{display:block;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
 .cl-field input,.cl-field textarea,.cl-field select{width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none;transition:border .15s}
 .cl-field textarea{height:58px;resize:vertical}
@@ -208,8 +211,8 @@ input,select,textarea{font-family:var(--sans);-webkit-appearance:none;border-rad
 .comm-box{background:var(--clay-xx);border:1px solid var(--bd);border-radius:var(--r);padding:11px 13px}
 .comm-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0}
 .comm-row.tot{border-top:1px solid var(--bd);margin-top:6px;padding-top:8px;font-weight:500;font-size:14px;color:var(--clay-d)}
-.sched-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.sched-inner{display:grid;gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden}
+.sched-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;background:rgba(255,255,255,.9);border:1px solid rgba(166,124,91,.16);border-radius:18px;padding:10px;box-shadow:0 14px 32px rgba(42,31,20,.06);}
+.sched-inner{display:grid;gap:2px;background:var(--bd);border-radius:16px;overflow:hidden}
 .sg-hdr{background:var(--clay-xx);padding:5px 4px;font-size:9px;color:var(--ink3);text-align:center;letter-spacing:.05em}
 .sg-lbl{background:var(--clay-xx);padding:8px 8px;font-size:11px;color:var(--ink2);display:flex;align-items:center;gap:6px}
 .sg-av{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex-shrink:0}
@@ -400,28 +403,38 @@ input,select,textarea{font-family:var(--sans);-webkit-appearance:none;border-rad
 
 <script>
 /* ══ DATA ══ */
-const SVCS=[
+const DEFAULT_SVCS=[
   {id:'spa',name:'頭療 SPA',dur:'70 分鐘',price:999,orig:1899},
   {id:'pkg',name:'包卡方案',dur:'8 次 × 70 分鐘',price:6999},
 ];
-const PRODS=[
+const DEFAULT_PRODS=[
   {id:'oil',name:'精油',icon:'💧',price:680},
   {id:'comb',name:'頭皮梳',icon:'🪮',price:450},
   {id:'candle',name:'香氛蠟燭',icon:'🕯️',price:520},
   {id:'body',name:'沐浴乳',icon:'🧴',price:380},
 ];
-const STAFF_LIST=[
+const DEFAULT_STAFF_LIST=[
   {id:'s77',name:'七七',color:'#A67C5B'},
   {id:'sxuan',name:'萱',color:'#5D9EA6'},
 ];
+const DEFAULT_PAYS=[
+  {id:'cash',icon:'💵',name:'現金'},
+  {id:'card',icon:'💳',name:'刷卡'},
+  {id:'transfer',icon:'📲',name:'轉帳'},
+  {id:'linepay',icon:'💚',name:'Line Pay'},
+];
+const SVCS=loadList('sk2_svcs',DEFAULT_SVCS);
+const PRODS=loadList('sk2_prods',DEFAULT_PRODS);
+const STAFF_LIST=loadList('sk2_staff',DEFAULT_STAFF_LIST);
+const PAYS=loadList('sk2_pays',DEFAULT_PAYS);
 const TIMES=['10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30'];
 const WD=['日','一','二','三','四','五','六'];
 const MO=['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
 const PAY_NAMES={cash:'現金',card:'刷卡',transfer:'轉帳',linepay:'Line Pay'};
 const SRC={online:'線上預約',walkin:'自行來店',referral:'朋友介紹'};
 
-function ld(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch{return d}}
-function sv(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function loadList(k,d){try{const v=JSON.parse(localStorage.getItem(k));return Array.isArray(v)?v:v===null?d.map(x=>({...x})):d.map(x=>({...x}))}catch{return d.map(x=>({...x}))}}
+function saveList(k,v){localStorage.setItem(k,JSON.stringify(v))}
 function fmt(d){return d.toISOString().split('T')[0]}
 function addD(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r}
 function gid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5)}
@@ -430,6 +443,14 @@ function fm(n){return '$'+n.toLocaleString()}
 function svcN(id){return SVCS.find(s=>s.id===id)?.name||id}
 function stN(id){if(id==='any')return'不指定';return STAFF_LIST.find(s=>s.id===id)?.name||'—'}
 function stColor(id){return STAFF_LIST.find(s=>s.id===id)?.color||'#888'}
+function avatarHtml(c){
+  const initial=(c?.name||'客')[0];
+  return `<div class="cl-avatar" style="${c?.avatar?`background-image:url('${c.avatar}');background-size:cover;background-position:center;`:''}">${c?.avatar?'':initial}</div>`;
+}
+function profileAvatar(c){
+  const initial=(c?.name||'客')[0];
+  return `<div class="geno-av" style="${c?.avatar?`background-image:url('${c.avatar}');background-size:cover;background-position:center;`:''}">${c?.avatar?'':initial}</div>`;
+}
 
 function initBK(){
   let d=ld('sk2_bk',[]);if(d.length)return d;
@@ -833,6 +854,12 @@ function renderCheckout(el){
       <div id="co-sug" class="phone-suggest" style="display:none"></div>
     </div>
   </div>
+  ${curRole==='admin'?`<div class="co-sec" style="background:var(--clay-xx);border:1px solid var(--bd2);border-radius:var(--r);padding:14px">
+      <div class="co-sec-t">老闆工具</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+        ${[['staff','服務人員管理'],['svc','服務項目管理'],['prod','商品管理'],['pay','付款方式管理']].map(([type,label])=>`<button class="btn-xs clay" style="width:100%;" onclick="showManageModal('${type}')">${label}</button>`).join('')}
+      </div>
+    </div>`:''}
   <div class="co-sec">
     <div class="co-sec-t">服務人員</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
@@ -869,9 +896,9 @@ function renderCheckout(el){
   <div class="co-sec">
     <div class="co-sec-t">付款方式</div>
     <div class="pay-grid">
-      ${[['cash','💵','現金'],['card','💳','刷卡'],['transfer','📲','轉帳'],['linepay','💚','Line Pay']].map(([id,ic,nm])=>`
-      <div class="pay-btn${CO.pay===id?' sel':''}" onclick="CO.pay='${id}';renderPage('checkout')">
-        <div class="pay-icon">${ic}</div><div class="pay-name">${nm}</div>
+      ${PAYS.map(p=>`
+      <div class="pay-btn${CO.pay===p.id?' sel':''}" onclick="CO.pay='${p.id}';renderPage('checkout')">
+        <div class="pay-icon">${p.icon}</div><div class="pay-name">${p.name}</div>
       </div>`).join('')}
     </div>
   </div>
@@ -960,6 +987,111 @@ function completeCO(){
   CO={bkId:null,client:'',items:[],pay:'',usePkg:false,pkgCount:1,inv:false,invType:'personal',invName:'',carriers:'',staffId:''};
 }
 
+function getCatalog(type){
+  if(type==='staff')return STAFF_LIST;
+  if(type==='svc')return SVCS;
+  if(type==='prod')return PRODS;
+  if(type==='pay')return PAYS;
+  return [];
+}
+function saveCatalog(type,list){
+  if(type==='staff'){STAFF_LIST.splice(0,STAFF_LIST.length,...list);saveList('sk2_staff',STAFF_LIST);}
+  if(type==='svc'){SVCS.splice(0,SVCS.length,...list);saveList('sk2_svcs',SVCS);}
+  if(type==='prod'){PRODS.splice(0,PRODS.length,...list);saveList('sk2_prods',PRODS);}
+  if(type==='pay'){PAYS.splice(0,PAYS.length,...list);saveList('sk2_pays',PAYS);}
+}
+function typeLabel(type){
+  return type==='staff'?'服務人員':type==='svc'?'服務項目':type==='prod'?'商品':'付款方式';
+}
+function showManageModal(type){
+  document.getElementById('modal-slot').innerHTML=`<div class="modal-ov" onclick="if(event.target.classList.contains('modal-ov'))closeModal()">
+    <div class="modal">
+      <div class="modal-bar"></div>
+      <h3>管理 ${typeLabel(type)}</h3>
+      <div id="manage-body"></div>
+      <div style="display:flex;gap:10px;margin-top:16px">
+        <button class="mbtn ok" onclick="addManageItem('${type}')">新增</button>
+        <button class="mbtn cl" onclick="closeModal();renderPage('checkout')">關閉</button>
+      </div>
+    </div>
+  </div>`;
+  renderManageModal(type);
+}
+function renderManageModal(type){
+  const list=getCatalog(type);
+  const rows=list.map((item,i)=>{
+    const content=[];
+    content.push(`<input value="${item.name}" placeholder="名稱" oninput="updateManageItem('${type}',${i},'name',this.value)" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/>`);
+    if(type==='staff'){
+      content.push(`<input value="${item.color}" placeholder="顏色" oninput="updateManageItem('staff',${i},'color',this.value)" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/>`);
+    } else if(type==='svc'){
+      content.push(`<div style="display:grid;grid-template-columns:1fr 100px;gap:8px"><input value="${item.dur}" placeholder="時長" oninput="updateManageItem('svc',${i},'dur',this.value)" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/><input type="number" value="${item.price}" placeholder="價格" oninput="updateManageItem('svc',${i},'price',Number(this.value))" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/></div>`);
+    } else if(type==='prod'){
+      content.push(`<div style="display:grid;grid-template-columns:80px 1fr;gap:8px"><input value="${item.icon}" placeholder="圖示" oninput="updateManageItem('prod',${i},'icon',this.value)" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:16px;color:var(--ink);background:#fff;outline:none"/><input type="number" value="${item.price}" placeholder="價格" oninput="updateManageItem('prod',${i},'price',Number(this.value))" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/></div>`);
+    } else if(type==='pay'){
+      content.push(`<div style="display:grid;grid-template-columns:80px 1fr;gap:8px"><input value="${item.icon}" placeholder="圖示" oninput="updateManageItem('pay',${i},'icon',this.value)" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:16px;color:var(--ink);background:#fff;outline:none"/><input value="${item.name}" placeholder="名稱" oninput="updateManageItem('pay',${i},'name',this.value)" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/></div>`);
+    }
+    return `<div style="background:#fff;border:1px solid var(--bd);border-radius:var(--r);padding:12px;margin-bottom:10px">
+      <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px">
+        <div style="flex:1;display:grid;gap:8px">${content.join('')}<div style="font-size:11px;color:var(--ink3)">ID: ${item.id}</div></div>
+        <button class="mbtn danger" style="height:34px;white-space:nowrap" onclick="deleteManageItem('${type}',${i})">刪除</button>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('manage-body').innerHTML=`<div style="max-height:42vh;overflow:auto;padding-right:4px">${rows||'<div style="font-size:13px;color:var(--ink3);padding:12px 0">目前尚無資料，請新增。</div>'}</div>
+    <div style="margin-top:12px;border-top:1px solid var(--bd);padding-top:12px">
+      <div style="font-size:12px;color:var(--ink3);margin-bottom:8px">新增 ${typeLabel(type)}</div>
+      <div style="display:grid;gap:10px">
+        <input id="manage-new-name" placeholder="名稱" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/>
+        ${type==='staff'?`<input id="manage-new-color" placeholder="顏色（例如 #A67C5B）" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/>`:
+        type==='svc'?`<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><input id="manage-new-dur" placeholder="時長" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/><input id="manage-new-price" type="number" placeholder="價格" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/></div>`:
+        type==='prod'?`<div style="display:grid;grid-template-columns:80px 1fr;gap:8px"><input id="manage-new-icon" placeholder="圖示" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:16px;color:var(--ink);background:#fff;outline:none"/><input id="manage-new-price" type="number" placeholder="價格" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;outline:none"/></div>`:
+        `<input id="manage-new-icon" placeholder="圖示" style="width:100%;padding:10px 12px;border:1px solid var(--bd2);border-radius:var(--r);font-size:16px;color:var(--ink);background:#fff;outline:none"/>`}
+      </div>
+    </div>`;
+}
+function updateManageItem(type,index,field,value){
+  const list=getCatalog(type);
+  if(!list[index])return;
+  list[index]={...list[index],[field]:value};
+  saveCatalog(type,list);
+  renderManageModal(type);
+}
+function addManageItem(type){
+  const name=document.getElementById('manage-new-name')?.value.trim();
+  if(!name){toast('請填寫名稱');return;}
+  const list=getCatalog(type);
+  const item={id:name.toLowerCase().replace(/[^\w]+/g,'-')||gid(),name};
+  if(type==='staff'){
+    item.color=document.getElementById('manage-new-color')?.value.trim()||'#A67C5B';
+  } else if(type==='svc'){
+    item.dur=document.getElementById('manage-new-dur')?.value.trim()||'30 分鐘';
+    item.price=Number(document.getElementById('manage-new-price')?.value)||0;
+  } else if(type==='prod'){
+    item.icon=document.getElementById('manage-new-icon')?.value.trim()||'❖';
+    item.price=Number(document.getElementById('manage-new-price')?.value)||0;
+  } else if(type==='pay'){
+    item.icon=document.getElementById('manage-new-icon')?.value.trim()||'💳';
+  }
+  if(list.some(x=>x.id===item.id||x.name===item.name)){
+    toast('名稱或 ID 已存在');return;
+  }
+  list.push(item);
+  saveCatalog(type,list);
+  renderManageModal(type);
+  toast('已新增 '+typeLabel(type));
+}
+function deleteManageItem(type,index){
+  const list=getCatalog(type);
+  const item=list[index];
+  if(!item)return;
+  list.splice(index,1);
+  if(type==='pay'&&CO.pay===item.id)CO.pay='';
+  if(type==='staff'&&CO.staffId===item.id)CO.staffId='';
+  saveCatalog(type,list);
+  renderManageModal(type);
+}
+
 function showReceiptModal(txn,cl,pkgDeduct){
   document.getElementById('modal-slot').innerHTML=`<div class="modal-ov" onclick="if(event.target.classList.contains('modal-ov')){closeModal();renderPage('checkout')}">
     <div class="modal">
@@ -972,7 +1104,7 @@ function showReceiptModal(txn,cl,pkgDeduct){
       </div>
       ${txn.items.map(i=>`<div class="rec-item"><span>${i.name}</span><span>${i.price===0?'包卡':fm(i.price)}</span></div>`).join('')}
       <div class="rec-item tot"><span>合計</span><span>${fm(txn.total)}</span></div>
-      <div class="rec-footer">付款：${PAY_NAMES[txn.pay]||txn.pay}</div>
+      <div class="rec-footer">付款：${PAYS.find(p=>p.id===txn.pay)?.name||PAY_NAMES[txn.pay]||txn.pay}</div>
       ${pkgDeduct>0?`<div class="rec-note">包卡扣除 ${pkgDeduct} 次・剩餘 ${(cl?.pkgT||0)-(cl?.pkgU||0)} 次</div>`:''}
       ${txn.invType!=='personal'?`<div class="rec-note">📄 發票記錄${txn.invName?' · '+txn.invName:''}</div>`:''}
       <div class="mact">
@@ -993,8 +1125,8 @@ function renderClients(el){
       <span class="search-icon">🔍</span>
       <input class="search-inp" placeholder="搜尋姓名或電話..." oninput="filterCL(this.value)"/>
     </div>
-    ${curRole==='admin'?`<button class="btn-main" style="width:auto;padding:10px 14px;font-size:13px" onclick="showAddCl()">+ 新增</button>`:''}
   </div>
+  <div style="font-size:12px;color:var(--ink3);margin-bottom:14px;line-height:1.6">客戶帳號請由 LINE Bot 統一建立，管理系統此處僅管理客戶資料與消費記錄，避免重複註冊。</div>
   <div id="cl-list">${renderCLCards(CL)}</div>`;
 }
 
@@ -1082,13 +1214,13 @@ function showGeno(cid){
     <div class="geno-bd" onclick="closeGeno()"></div>
     <div class="geno-panel" id="geno-p">
       <div class="geno-hdr">
-        <span class="geno-title">介紹族譜</span>
+        <span class="geno-title">介紹圈</span>
         <button class="geno-close" onclick="closeGeno()">×</button>
       </div>
       <div class="geno-body">
         ${parent?`<div style="margin-bottom:12px">
           <div class="geno-tier-lbl">介紹人</div>
-          <div class="geno-person"><div class="geno-av ref">${parent.name[0]}</div>
+          <div class="geno-person"><div class="geno-av ref" style="${parent.avatar?`background-image:url('${parent.avatar}');background-size:cover;background-position:center;`:'background:var(--ink2)'}">${parent.avatar?'':parent.name[0]}</div>
             <div><div class="geno-pname">${parent.name}</div><div class="geno-pmeta">${fm(parent.spent)} 累計</div></div>
           </div>
           <div class="geno-conn">│</div>
@@ -1196,15 +1328,14 @@ function renderStaff(el){
           const sc=SCHED[day.date]||{};
           const s=sc[st.id]||'work';
           const isToday=day.date===today();
-          const isPast=day.date<today();
           const diffMonth=day.month!==n.getMonth();
           return`<div onclick="toggleSched('${day.date}','${st.id}')"
-            style="aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;transition:all .15s;
+            style="min-height:72px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:all .15s;
             background:${s==='work'?'var(--clay-xl)':'var(--ng-l)'};
-            border:1.5px solid ${isToday?'var(--clay)':s==='work'?'rgba(166,124,91,.25)':'rgba(160,48,48,.2)'};
-            opacity:${diffMonth?0.4:1}">
-            <div style="font-size:11px;font-weight:${isToday?'600':'400'};color:${isToday?'var(--clay-d)':s==='work'?'var(--ink2)':'var(--ng)'}">${day.day}</div>
-            <div style="width:6px;height:6px;border-radius:50%;background:${s==='work'?'var(--clay)':'var(--ng)'}"></div>
+            border:1.5px solid ${isToday?'var(--clay)':s==='work'?'rgba(166,124,91,.22)':'rgba(160,48,48,.24)'};
+            opacity:${diffMonth?0.55:1}">
+            <div style="font-size:12px;font-weight:${isToday?'600':'500'};color:${isToday?'var(--clay-d)':s==='work'?'var(--ink2)':'var(--ng)'}">${day.day}</div>
+            <div style="width:8px;height:8px;border-radius:50%;background:${s==='work'?'var(--clay)':'var(--ng)'}"></div>
           </div>`;
         }).join('')}
       </div>

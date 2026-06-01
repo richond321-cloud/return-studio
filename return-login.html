@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>登入・回首 Return</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --clay:#A67C5B;--clay-d:#8B6245;--clay-l:#C4A882;--clay-xl:#F2EAE0;--clay-xx:#FAF6F1;
+  --ink:#2A1F14;--ink2:#6B5A4A;--ink3:#A89880;--cream:#FDF8F3;
+  --bd:rgba(166,124,91,.18);--bd2:rgba(166,124,91,.32);
+  --ok:#4A7C59;--ok-l:#E8F4EC;--ng:#A03030;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --tc:'Noto Serif TC',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+html{height:100%}
+body{font-family:var(--sans);background:linear-gradient(150deg,var(--clay-xx) 0%,var(--cream) 60%);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;position:relative;overflow:hidden}
+body::before{content:'';position:absolute;top:-20%;right:-15%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(166,124,91,.08),transparent 65%);pointer-events:none}
+body::after{content:'';position:absolute;bottom:-15%;left:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.06),transparent 65%);pointer-events:none}
+
+.back-home{position:absolute;top:16px;left:16px;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink3);text-decoration:none;cursor:pointer;background:none;border:none;letter-spacing:.04em;transition:color .15s;z-index:10}
+.back-home:hover{color:var(--clay)}
+.back-home svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.card{background:rgba(253,248,243,.95);border:1px solid var(--bd);border-radius:16px;padding:32px 24px;width:100%;max-width:400px;box-shadow:0 8px 40px rgba(42,31,20,.08);position:relative;z-index:1}
+
+.card-logo{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:28px}
+.logo-circle{width:52px;height:52px;border-radius:50%;background:var(--clay);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(166,124,91,.28)}
+.logo-circle svg{width:28px;height:28px;fill:none;stroke:#FAF6F1;stroke-width:1.4;stroke-linecap:round}
+.logo-en{font-family:var(--serif);font-size:24px;color:var(--ink);letter-spacing:.05em}
+.logo-zh{font-size:10px;color:var(--clay);letter-spacing:.14em}
+
+.tabs{display:flex;background:var(--clay-xx);border-radius:8px;padding:3px;gap:3px;margin-bottom:24px}
+.tab{flex:1;padding:9px;border-radius:6px;border:none;background:none;font-size:13px;color:var(--ink3);letter-spacing:.04em;cursor:pointer;transition:all .15s;font-family:var(--sans)}
+.tab.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(166,124,91,.12)}
+
+.screen{display:none}
+.screen.on{display:block}
+
+/* LOGIN */
+.demo-box{background:var(--clay-xx);border:1px solid var(--bd);border-radius:8px;padding:12px 14px;margin-bottom:18px}
+.demo-title{font-size:11px;color:var(--clay-d);letter-spacing:.06em;margin-bottom:8px;font-weight:500}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.demo-btn{background:#fff;border:1px solid var(--bd);border-radius:6px;padding:8px 10px;cursor:pointer;transition:all .15s;text-align:left}
+.demo-btn:hover{border-color:var(--clay-l);background:var(--clay-xl)}
+.demo-role{font-size:10px;color:var(--clay);letter-spacing:.05em;margin-bottom:2px}
+.demo-cred{font-size:12px;color:var(--ink2)}
+
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;color:var(--ink2);margin-bottom:5px;letter-spacing:.08em;text-transform:uppercase}
+.field input{width:100%;padding:12px 14px;border:1px solid var(--bd2);border-radius:8px;font-size:14px;color:var(--ink);background:var(--clay-xx);outline:none;transition:border .15s;font-family:var(--sans)}
+.field input:focus{border-color:var(--clay);background:#fff}
+.forgot{text-align:right;margin-top:-8px;margin-bottom:14px}
+.forgot a{font-size:12px;color:var(--clay);cursor:pointer}
+
+.btn-main{width:100%;background:var(--clay);color:#fff;border:none;padding:14px;border-radius:8px;font-size:14px;letter-spacing:.06em;cursor:pointer;transition:background .15s;font-family:var(--sans);margin-bottom:12px}
+.btn-main:hover{background:var(--clay-d)}
+.btn-bio{width:100%;background:none;border:1px solid var(--bd2);color:var(--ink2);padding:12px;border-radius:8px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s;font-family:var(--sans);margin-bottom:14px}
+.btn-bio:hover{border-color:var(--clay);color:var(--clay)}
+.bio-icon{font-size:18px}
+.divider{display:flex;align-items:center;gap:10px;margin:4px 0 14px;color:var(--ink3);font-size:12px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--bd)}
+.switch-link{text-align:center;font-size:13px;color:var(--ink3)}
+.switch-link a{color:var(--clay);cursor:pointer}
+
+/* REGISTER */
+.reg-progress{display:flex;gap:4px;margin-bottom:18px}
+.reg-step-bar{flex:1;height:3px;border-radius:2px;background:var(--clay-xl);transition:background .3s}
+.reg-step-bar.done{background:var(--clay)}
+.reg-lbl{font-size:11px;color:var(--ink3);text-align:center;margin-bottom:16px}
+.reg-title{font-family:var(--tc);font-size:18px;color:var(--ink);margin-bottom:6px}
+.reg-sub{font-size:12px;color:var(--ink3);margin-bottom:18px;line-height:1.7}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.otp-wrap{display:flex;gap:8px;margin-top:5px}
+.otp-inp{flex:1;padding:12px 14px;border:1px solid var(--bd2);border-radius:8px;font-size:14px;color:var(--ink);background:var(--clay-xx);outline:none;transition:border .15s;font-family:var(--sans)}
+.otp-inp:focus{border-color:var(--clay);background:#fff}
+.otp-send{background:var(--clay-xx);border:1px solid var(--bd2);color:var(--clay-d);padding:12px 14px;border-radius:8px;font-size:12px;white-space:nowrap;cursor:pointer;font-family:var(--sans);transition:all .15s}
+.otp-send:hover{border-color:var(--clay)}
+.otp-boxes{display:flex;gap:8px;justify-content:center;margin:16px 0 8px}
+.otp-box{width:44px;height:50px;border:1.5px solid var(--bd2);border-radius:8px;font-size:20px;text-align:center;color:var(--ink);background:var(--clay-xx);outline:none;transition:border .15s;font-family:var(--sans)}
+.otp-box:focus{border-color:var(--clay);background:#fff}
+.otp-resend{text-align:center;font-size:12px;color:var(--ink3);margin-bottom:16px}
+.otp-resend a{color:var(--clay);cursor:pointer}
+.role-cards{display:grid;gap:8px;margin-bottom:16px}
+.role-card{border:1.5px solid var(--bd);border-radius:8px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .15s}
+.role-card:hover{border-color:var(--clay-l);background:var(--clay-xx)}
+.role-card.sel{border-color:var(--clay);background:var(--clay-xl)}
+.role-icon{width:40px;height:40px;background:var(--clay-xl);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.role-name{font-family:var(--tc);font-size:14px;color:var(--ink)}
+.role-desc{font-size:11px;color:var(--ink3);margin-top:2px}
+.btn-row{display:flex;gap:8px}
+.btn-back{flex:0 0 72px;background:none;border:1px solid var(--bd);color:var(--ink3);padding:13px;border-radius:8px;font-size:13px;cursor:pointer;font-family:var(--sans);transition:all .15s}
+.btn-back:hover{border-color:var(--clay);color:var(--clay)}
+.btn-next{flex:1;background:var(--clay);color:#fff;border:none;padding:13px;border-radius:8px;font-size:13px;letter-spacing:.05em;cursor:pointer;font-family:var(--sans);transition:background .15s}
+.btn-next:hover{background:var(--clay-d)}
+.btn-next:disabled{opacity:.35;cursor:not-allowed}
+
+/* SUCCESS */
+.success-wrap{text-align:center;padding:10px 0}
+.success-circle{width:64px;height:64px;border-radius:50%;background:var(--ok-l);border:2px solid var(--ok);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px}
+.success-title{font-family:var(--tc);font-size:20px;color:var(--ink);margin-bottom:6px}
+.success-desc{font-size:13px;color:var(--ink3);line-height:1.8;margin-bottom:22px}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:99px;font-size:13px;z-index:500;white-space:nowrap;letter-spacing:.04em;box-shadow:0 4px 16px rgba(0,0,0,.2);pointer-events:none;transition:opacity .3s}
+</style>
+</head>
+<body>
+
+<button class="back-home" onclick="window.location.href='return-home.html'">
+  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+  回官網
+</button>
+
+<div class="card">
+  <div class="card-logo">
+    <div class="logo-circle">
+      <svg viewBox="0 0 24 24"><path d="M12 4C8 4 4 8 4 12s4 8 8 8"/><path d="M12 4c4 0 8 4 8 8s-4 8-8 8"/><path d="M8 9c2-2 6-2 8 0s2 6 0 8"/><path d="M16 9c0 2 0 6-4 8"/></svg>
+    </div>
+    <div class="logo-en">Return</div>
+    <div class="logo-zh">回首・感官療癒所</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" id="tab-login" onclick="switchTab('login')">登入</button>
+    <button class="tab" id="tab-register" onclick="switchTab('register')">註冊</button>
+  </div>
+
+  <!-- LOGIN -->
+  <div class="screen on" id="s-login">
+    <div class="demo-box">
+      <div class="demo-title">🎯 示範帳號（點擊快速填入）</div>
+      <div class="demo-grid">
+        <div class="demo-btn" onclick="fill('1','1')"><div class="demo-role">👑 老闆</div><div class="demo-cred">帳號 1・密碼 1</div></div>
+        <div class="demo-btn" onclick="fill('2','2')"><div class="demo-role">💆 七七</div><div class="demo-cred">帳號 2・密碼 2</div></div>
+        <div class="demo-btn" onclick="fill('3','3')"><div class="demo-role">💆 萱</div><div class="demo-cred">帳號 3・密碼 3</div></div>
+        <div class="demo-btn" onclick="fill('4','4')"><div class="demo-role">🙋 客戶</div><div class="demo-cred">帳號 4・密碼 4</div></div>
+      </div>
+    </div>
+    <div class="field"><label>帳號</label><input id="l-user" placeholder="請輸入帳號" autocomplete="username"/></div>
+    <div class="field"><label>密碼</label><input id="l-pass" type="password" placeholder="請輸入密碼" autocomplete="current-password"/></div>
+    <div class="forgot"><a onclick="showForgot()">忘記密碼？</a></div>
+    <button class="btn-main" onclick="doLogin()">登入</button>
+    <div class="divider">或</div>
+    <button class="btn-bio" onclick="doBio()"><span class="bio-icon">🔐</span>Face ID / 指紋登入</button>
+    <div class="switch-link">還沒有帳號？<a onclick="switchTab('register')">免費註冊</a></div>
+  </div>
+
+  <!-- REGISTER -->
+  <div class="screen" id="s-register">
+    <div id="reg-body"></div>
+  </div>
+</div>
+
+<script>
+const ACCOUNTS={
+  '1':{pass:'1',role:'admin',name:'老闆'},
+  '2':{pass:'2',role:'staff',name:'七七',staffId:'s77'},
+  '3':{pass:'3',role:'staff',name:'萱',staffId:'sxuan'},
+  '4':{pass:'4',role:'client',name:'林小姐'},
+};
+
+let regStep=1,regData={};
+
+function switchTab(t){
+  document.getElementById('tab-login').classList.toggle('on',t==='login');
+  document.getElementById('tab-register').classList.toggle('on',t==='register');
+  document.getElementById('s-login').classList.toggle('on',t==='login');
+  document.getElementById('s-register').classList.toggle('on',t==='register');
+  if(t==='register'){regStep=1;regData={};renderReg();}
+}
+
+function fill(u,p){
+  document.getElementById('l-user').value=u;
+  document.getElementById('l-pass').value=p;
+}
+
+function doLogin(){
+  const u=document.getElementById('l-user').value.trim();
+  const p=document.getElementById('l-pass').value.trim();
+  const acc=ACCOUNTS[u];
+  if(!acc||acc.pass!==p){toast('帳號或密碼錯誤');return}
+  localStorage.setItem('sk_user',JSON.stringify({id:u,...acc}));
+  toast('登入成功！');
+  setTimeout(()=>window.location.href='return-app.html',600);
+}
+
+function doBio(){
+  toast('驗證 Face ID / 指紋中（模擬）...');
+  const last=localStorage.getItem('sk_last_user');
+  setTimeout(()=>{
+    if(last){
+      const acc=JSON.parse(last);
+      localStorage.setItem('sk_user',JSON.stringify(acc));
+      window.location.href='return-app.html';
+    } else {
+      toast('請先以帳號密碼登入一次');
+    }
+  },1200);
+}
+
+function showForgot(){toast('驗證碼已發送（模擬）')}
+
+/* REGISTER */
+function renderReg(){
+  const body=document.getElementById('reg-body');
+  const steps=['選擇身份','填寫資料','手機驗證','設定帳密'];
+  const prog=`<div class="reg-progress">${steps.map((_,i)=>`<div class="reg-step-bar${i<regStep?' done':''}"></div>`).join('')}</div>
+  <div class="reg-lbl">步驟 ${regStep} / ${steps.length}・${steps[regStep-1]}</div>`;
+
+  if(regStep===1){
+    body.innerHTML=`${prog}
+    <div class="reg-title">你的身份</div>
+    <div class="reg-sub">不同身份享有不同功能</div>
+    <div class="role-cards">
+      <div class="role-card${regData.role==='admin'?' sel':''}" onclick="regData.role='admin';renderReg()">
+        <div class="role-icon">👑</div>
+        <div><div class="role-name">管理者・老闆</div><div class="role-desc">全功能・員工管理・營收報表</div></div>
+      </div>
+      <div class="role-card${regData.role==='staff'?' sel':''}" onclick="regData.role='staff';renderReg()">
+        <div class="role-icon">💆</div>
+        <div><div class="role-name">店員</div><div class="role-desc">預約・結帳・個人業績</div></div>
+      </div>
+      <div class="role-card${regData.role==='client'?' sel':''}" onclick="regData.role='client';renderReg()">
+        <div class="role-icon">🙋</div>
+        <div><div class="role-name">客戶</div><div class="role-desc">預約・包卡・消費紀錄</div></div>
+      </div>
+    </div>
+    <button class="btn-next" ${regData.role?'':'disabled'} onclick="regStep=2;renderReg()">下一步</button>
+    <div class="switch-link" style="margin-top:14px">已有帳號？<a onclick="switchTab('login')">登入</a></div>`;
+  }
+  else if(regStep===2){
+    body.innerHTML=`${prog}
+    <div class="reg-title">基本資料</div>
+    <div class="field"><label>姓名 *</label><input id="r-name" value="${regData.name||''}" oninput="regData.name=this.value" placeholder="請輸入真實姓名"/></div>
+    <div class="frow">
+      <div class="field"><label>生日（民國年）</label><input id="r-by" value="${regData.by||''}" oninput="regData.by=this.value" placeholder="例：85"/></div>
+      <div class="field"><label>月份</label>
+        <select id="r-bm" onchange="regData.bm=this.value" style="width:100%;padding:12px 14px;border:1px solid var(--bd2);border-radius:8px;font-size:14px;color:var(--ink);background:var(--clay-xx);outline:none;font-family:var(--sans)">
+          <option value="">月份</option>
+          ${Array.from({length:12},(_,i)=>`<option value="${i+1}"${regData.bm==i+1?' selected':''}>  ${i+1} 月</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <div class="field"><label>信箱（選填）</label><input id="r-email" type="email" value="${regData.email||''}" oninput="regData.email=this.value" placeholder="example@email.com"/></div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="regStep=1;renderReg()">返回</button>
+      <button class="btn-next" onclick="if(!regData.name){toast('請填寫姓名');return}regStep=3;renderReg()">下一步</button>
+    </div>`;
+  }
+  else if(regStep===3){
+    body.innerHTML=`${prog}
+    <div class="reg-title">手機驗證</div>
+    <div class="reg-sub">輸入手機號碼，取得驗證碼</div>
+    <div class="field"><label>手機號碼 *</label>
+      <div class="otp-wrap">
+        <input class="otp-inp" id="r-phone" value="${regData.phone||''}" oninput="regData.phone=this.value" placeholder="09XX-XXX-XXX"/>
+        <button class="otp-send" onclick="sendOTP()">發送</button>
+      </div>
+    </div>
+    ${regData.otpSent?`<div class="field" style="margin-bottom:0"><label>輸入 6 位驗證碼</label></div>
+    <div class="otp-boxes">${Array.from({length:6},(_,i)=>`<input class="otp-box" id="ob${i}" maxlength="1" oninput="otpIn(this,${i})" onkeydown="otpKey(this,${i},event)"/>`).join('')}</div>
+    <div class="otp-resend">沒收到？<a onclick="sendOTP()">重新發送</a></div>`:''}
+    <div class="btn-row">
+      <button class="btn-back" onclick="regStep=2;renderReg()">返回</button>
+      <button class="btn-next" onclick="verifyOTP()">驗證繼續</button>
+    </div>`;
+    if(regData.otpSent)setTimeout(()=>document.getElementById('ob0')?.focus(),100);
+  }
+  else if(regStep===4){
+    body.innerHTML=`${prog}
+    <div class="reg-title">設定帳號密碼</div>
+    <div class="field"><label>帳號 *</label><input id="r-user" value="${regData.user||''}" oninput="regData.user=this.value" placeholder="自訂帳號名稱" autocomplete="new-username"/></div>
+    <div class="field"><label>密碼 *</label><input id="r-pass" type="password" placeholder="至少 6 位" autocomplete="new-password" oninput="regData.pass=this.value"/></div>
+    <div class="field"><label>確認密碼 *</label><input id="r-pass2" type="password" placeholder="再次輸入密碼" autocomplete="new-password"/></div>
+    <div class="btn-row" style="margin-bottom:12px">
+      <button class="btn-back" onclick="regStep=3;renderReg()">返回</button>
+      <button class="btn-next" onclick="completeReg()">完成註冊</button>
+    </div>
+    <button class="btn-bio" onclick="toast('完成註冊後可啟用生物識別')">
+      <span class="bio-icon">🔐</span>啟用 Face ID / 指紋
+    </button>`;
+  }
+  else if(regStep===5){
+    body.innerHTML=`<div class="success-wrap">
+      <div class="success-circle">✓</div>
+      <div class="success-title">註冊成功！</div>
+      <div class="success-desc">歡迎加入回首 Return<br/>請使用你的帳號密碼登入</div>
+      <button class="btn-main" onclick="switchTab('login')">前往登入</button>
+    </div>`;
+  }
+}
+
+function sendOTP(){
+  if(!regData.phone){toast('請填寫手機號碼');return}
+  regData.otpSent=true;regData.otp='123456';
+  renderReg();toast('驗證碼已發送（模擬：123456）');
+  setTimeout(()=>document.getElementById('ob0')?.focus(),300);
+}
+function otpIn(el,i){if(el.value.length===1&&i<5)document.getElementById('ob'+(i+1))?.focus()}
+function otpKey(el,i,e){if(e.key==='Backspace'&&!el.value&&i>0)document.getElementById('ob'+(i-1))?.focus()}
+function verifyOTP(){
+  const code=Array.from({length:6},(_,i)=>document.getElementById('ob'+i)?.value||'').join('');
+  if(code.length<6){toast('請輸入完整驗證碼');return}
+  regStep=4;renderReg();
+}
+function completeReg(){
+  const u=document.getElementById('r-user')?.value.trim();
+  const p=document.getElementById('r-pass')?.value;
+  const p2=document.getElementById('r-pass2')?.value;
+  if(!u||!p){toast('請填寫帳號與密碼');return}
+  if(p!==p2){toast('兩次密碼不一致');return}
+  regStep=5;renderReg();
+}
+
+function toast(msg){
+  const old=document.querySelector('.toast');if(old)old.remove();
+  const t=document.createElement('div');t.className='toast';t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.style.opacity='0',2200);
+  setTimeout(()=>t.remove(),2600);
+}
+
+renderReg();
+</script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>回首 Return・感官療癒所</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --clay:#A67C5B;--clay-d:#8B6245;--clay-l:#C4A882;--clay-xl:#F2EAE0;--clay-xx:#FAF6F1;
+  --ink:#2A1F14;--ink2:#6B5A4A;--ink3:#A89880;--cream:#FDF8F3;--gold:#C9A96E;
+  --bd:rgba(166,124,91,.18);--bd2:rgba(166,124,91,.32);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --tc:'Noto Serif TC',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --nav:56px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);overflow-x:hidden}
+button{cursor:pointer;font-family:var(--sans)}
+img,svg{display:block}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav);background:rgba(253,248,243,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-brand{display:flex;align-items:center;gap:10px;cursor:pointer}
+.nav-dot{width:36px;height:36px;border-radius:50%;background:var(--clay);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(166,124,91,.3)}
+.nav-dot svg{width:20px;height:20px;fill:none;stroke:#FAF6F1;stroke-width:1.4;stroke-linecap:round}
+.nav-en{font-family:var(--serif);font-size:16px;color:var(--ink);letter-spacing:.06em;line-height:1}
+.nav-zh{font-size:9px;color:var(--clay);letter-spacing:.14em;margin-top:1px}
+.nav-actions{display:flex;gap:8px;align-items:center}
+.nav-login{background:none;border:1px solid var(--bd2);color:var(--ink2);padding:7px 16px;border-radius:6px;font-size:12px;letter-spacing:.04em;transition:all .15s}
+.nav-login:hover{border-color:var(--clay);color:var(--clay)}
+.nav-book{background:var(--clay);color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:12px;letter-spacing:.06em;transition:background .15s}
+.nav-book:hover{background:var(--clay-d)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(var(--nav) + 48px) 20px 60px;background:linear-gradient(170deg,var(--clay-xx) 0%,var(--cream) 60%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-15%;right:-10%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(166,124,91,.09),transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-10%;left:-5%;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.06),transparent 65%);pointer-events:none}
+.hero-logo{width:82px;height:82px;border-radius:50%;background:var(--clay);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 8px 28px rgba(166,124,91,.28)}
+.hero-logo svg{width:46px;height:46px;fill:none;stroke:#FAF6F1;stroke-linecap:round}
+.hero-since{font-size:9px;letter-spacing:.26em;color:var(--clay);margin-bottom:10px;text-transform:uppercase}
+.hero-title{font-family:var(--serif);font-size:clamp(52px,12vw,88px);font-weight:300;color:var(--ink);line-height:1;letter-spacing:.04em;margin-bottom:6px}
+.hero-zh{font-family:var(--tc);font-size:13px;color:var(--ink2);letter-spacing:.2em;margin-bottom:10px}
+.hero-line{width:32px;height:1px;background:var(--clay-l);margin:12px auto}
+.hero-slogan{font-family:var(--tc);font-size:clamp(13px,3vw,15px);color:var(--ink3);letter-spacing:.08em;line-height:1.9;margin-bottom:32px}
+.hero-btns{display:flex;flex-direction:column;gap:10px;max-width:280px;margin:0 auto 48px}
+.btn-clay{background:var(--clay);color:#fff;border:none;padding:15px 24px;border-radius:6px;font-size:14px;letter-spacing:.08em;width:100%;transition:all .18s}
+.btn-clay:hover{background:var(--clay-d)}
+.btn-ghost{background:none;border:1px solid var(--bd2);color:var(--ink2);padding:14px 24px;border-radius:6px;font-size:14px;letter-spacing:.04em;width:100%;transition:all .18s}
+.btn-ghost:hover{border-color:var(--clay);color:var(--clay)}
+.hero-scroll{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink3);font-size:9px;letter-spacing:.18em;text-transform:uppercase}
+.scroll-line{width:1px;height:36px;background:var(--clay-l);animation:sd 2s ease-in-out infinite}
+@keyframes sd{0%,100%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1)}}
+
+/* SECTIONS */
+.sec{padding:72px 20px;max-width:880px;margin:0 auto}
+.sec-alt{background:var(--clay-xx);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.sec-alt-in{max-width:880px;margin:0 auto;padding:64px 20px}
+.slbl{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--clay);margin-bottom:10px}
+.stitle{font-family:var(--tc);font-size:clamp(22px,5vw,34px);color:var(--ink);margin-bottom:8px;line-height:1.3}
+.ssub{font-size:13px;color:var(--ink3);line-height:1.9;letter-spacing:.04em;margin-bottom:24px}
+.sdiv{width:32px;height:1px;background:var(--clay-l);margin:0 0 24px}
+
+/* SERVICES */
+.svc-list{display:flex;flex-direction:column;gap:14px}
+.svc-card{border-radius:14px;padding:24px 20px;border:1px solid var(--bd);position:relative;overflow:hidden;transition:transform .2s}
+.svc-card:hover{transform:translateY(-2px)}
+.svc-card.lt{background:#fff}
+.svc-card.dk{background:var(--clay)}
+.svc-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--clay-l),var(--gold))}
+.svc-card.dk::after{background:rgba(255,255,255,.2)}
+.svc-badge{position:absolute;top:14px;right:14px;font-size:9px;padding:2px 9px;border-radius:99px;letter-spacing:.06em}
+.svc-card.lt .svc-badge{background:var(--clay-xl);color:var(--clay-d)}
+.svc-card.dk .svc-badge{background:rgba(255,255,255,.15);color:#fff}
+.svc-name{font-family:var(--tc);font-size:17px;color:var(--ink);margin-bottom:4px}
+.svc-card.dk .svc-name{color:#fff}
+.svc-dur{font-size:12px;color:var(--ink3);margin-bottom:12px}
+.svc-card.dk .svc-dur{color:rgba(255,255,255,.5)}
+.svc-price{font-family:var(--serif);font-size:34px;font-weight:300;color:var(--clay-d)}
+.svc-card.dk .svc-price{color:#fff}
+.svc-orig{font-size:12px;color:var(--ink3);text-decoration:line-through;margin-left:8px}
+.svc-card.dk .svc-orig{color:rgba(255,255,255,.4)}
+.svc-desc{font-size:12px;color:var(--ink2);margin-top:12px;line-height:1.9}
+.svc-card.dk .svc-desc{color:rgba(255,255,255,.65)}
+.svc-btn{margin-top:16px;width:100%;border:none;padding:12px;border-radius:6px;font-size:13px;letter-spacing:.06em;transition:all .18s}
+.svc-card.lt .svc-btn{background:var(--clay);color:#fff}
+.svc-card.lt .svc-btn:hover{background:var(--clay-d)}
+.svc-card.dk .svc-btn{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.2)}
+
+/* PRODUCTS */
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.prod-item{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:18px 14px;text-align:center;transition:border-color .18s}
+.prod-item:hover{border-color:var(--clay-l)}
+.prod-icon{font-size:24px;margin-bottom:8px}
+.prod-name{font-family:var(--tc);font-size:13px;color:var(--ink)}
+.prod-desc{font-size:11px;color:var(--ink3);margin-top:3px}
+
+/* STORY */
+.story-box{background:var(--clay-xx);border:1px solid var(--bd);border-radius:16px;padding:28px 22px;text-align:center}
+.story-icon{font-size:40px;margin-bottom:14px}
+.story-quote{font-family:var(--tc);font-size:16px;font-weight:300;color:var(--clay-d);line-height:1.9;letter-spacing:.06em;margin-bottom:14px}
+.story-body{font-size:13px;color:var(--ink2);line-height:1.9;letter-spacing:.04em;margin-bottom:16px}
+.story-ig{font-size:12px;color:var(--clay);letter-spacing:.1em;display:inline-flex;align-items:center;gap:6px}
+
+/* INFO */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.info-card{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:16px}
+.info-icon{font-size:20px;margin-bottom:8px}
+.info-title{font-family:var(--tc);font-size:13px;color:var(--ink);margin-bottom:4px}
+.info-body{font-size:12px;color:var(--ink3);line-height:1.7}
+
+/* CTA BAND */
+.cta-band{background:var(--clay);padding:72px 20px;text-align:center}
+.cta-en{font-family:var(--serif);font-size:clamp(30px,7vw,52px);font-weight:300;color:#fff;letter-spacing:.05em;margin-bottom:6px}
+.cta-zh{font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.12em;margin-bottom:22px}
+.cta-btn{background:#fff;color:var(--clay-d);border:none;padding:14px 36px;border-radius:6px;font-size:13px;letter-spacing:.08em;transition:all .18s}
+.cta-btn:hover{background:var(--clay-xx)}
+.cta-info{margin-top:14px;font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.08em}
+
+/* FOOTER */
+footer{background:var(--ink);padding:32px 20px;text-align:center}
+.ft-logo{width:40px;height:40px;border-radius:50%;background:var(--clay);display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.ft-logo svg{width:22px;height:22px;fill:none;stroke:#FAF6F1;stroke-width:1.4;stroke-linecap:round}
+.ft-en{font-family:var(--serif);font-size:17px;color:rgba(255,255,255,.6);letter-spacing:.08em;margin-bottom:2px}
+.ft-zh{font-size:9px;color:rgba(255,255,255,.25);letter-spacing:.18em;margin-bottom:14px}
+.ft-info{font-size:11px;color:rgba(255,255,255,.28);line-height:1.9}
+.ft-divider{width:32px;height:1px;background:rgba(255,255,255,.1);margin:14px auto}
+
+@media(min-width:560px){
+  .hero-btns{flex-direction:row;max-width:none;width:auto}
+  .btn-clay,.btn-ghost{width:auto;padding:14px 28px}
+  .svc-list{display:grid;grid-template-columns:1fr 1fr}
+  .prod-grid{grid-template-columns:repeat(4,1fr)}
+  .info-grid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-brand">
+    <div class="nav-dot">
+      <svg viewBox="0 0 24 24"><path d="M12 4C8 4 4 8 4 12s4 8 8 8"/><path d="M12 4c4 0 8 4 8 8s-4 8-8 8"/><path d="M8 9c2-2 6-2 8 0s2 6 0 8"/><path d="M16 9c0 2 0 6-4 8"/></svg>
+    </div>
+    <div><div class="nav-en">Return</div><div class="nav-zh">回首・感官療癒所</div></div>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-login" onclick="goLogin()">登入</button>
+    <button class="nav-book" onclick="goLogin()">立即預約</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-logo">
+    <svg viewBox="0 0 48 48" stroke-width="1.3"><path d="M24 8C15 8 8 15 8 24s7 16 16 16"/><path d="M24 8c9 0 16 7 16 16s-7 16-16 16"/><path d="M16 18c3-3 13-3 16 0s3 12 0 15"/><path d="M32 18c0 3 0 12-8 15"/></svg>
+  </div>
+  <div class="hero-since">Since 2026</div>
+  <h1 class="hero-title">Return</h1>
+  <div class="hero-zh">回首・感官療癒所</div>
+  <div class="hero-line"></div>
+  <div class="hero-slogan">沉浸式頭療・台南<br/>一處讓感官回家的沉浸式座標</div>
+  <div class="hero-btns">
+    <button class="btn-clay" onclick="goLogin()">立即預約體驗</button>
+    <button class="btn-ghost" onclick="document.getElementById('svc').scrollIntoView({behavior:'smooth'})">了解服務</button>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</div>
+
+<div class="sec" id="svc">
+  <div class="slbl">Services</div>
+  <div class="stitle">沉浸式頭療體驗</div>
+  <div class="ssub">每一次療程都從傾聽開始<br/>精油與雙手，帶你回到自己</div>
+  <div class="sdiv"></div>
+  <div class="svc-list">
+    <div class="svc-card lt">
+      <div class="svc-badge">體驗優惠</div>
+      <div class="svc-name">頭療 SPA</div>
+      <div class="svc-dur">70 分鐘・全程服務</div>
+      <div><span class="svc-price">$999</span><span class="svc-orig">$1,899</span></div>
+      <div class="svc-desc">精油頭皮按摩・穴道舒壓<br/>頸肩深層放鬆・改善睡眠品質</div>
+      <button class="svc-btn" onclick="goLogin()">預約體驗</button>
+    </div>
+    <div class="svc-card dk">
+      <div class="svc-badge">最超值</div>
+      <div class="svc-name">包卡方案</div>
+      <div class="svc-dur">8 次 × 70 分鐘</div>
+      <div><span class="svc-price">$6,999</span><span class="svc-orig">平均 $875/次</span></div>
+      <div class="svc-desc">長期頭皮養護首選<br/>無使用期限・可與親友共享</div>
+      <button class="svc-btn" onclick="goLogin()">購買包卡</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec-alt">
+  <div class="sec-alt-in">
+    <div class="slbl">Products</div>
+    <div class="stitle">延伸居家養護儀式</div>
+    <div class="sdiv"></div>
+    <div class="prod-grid">
+      <div class="prod-item"><div class="prod-icon">💧</div><div class="prod-name">精油</div><div class="prod-desc">多種香氛配方</div></div>
+      <div class="prod-item"><div class="prod-icon">🪮</div><div class="prod-name">頭皮梳</div><div class="prod-desc">養護頭皮專用</div></div>
+      <div class="prod-item"><div class="prod-icon">🕯️</div><div class="prod-name">香氛蠟燭</div><div class="prod-desc">居家放鬆氛圍</div></div>
+      <div class="prod-item"><div class="prod-icon">🧴</div><div class="prod-name">沐浴乳</div><div class="prod-desc">草本溫和配方</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="slbl">Our Story</div>
+  <div class="stitle">關於回首</div>
+  <div class="sdiv"></div>
+  <div class="story-box">
+    <div class="story-icon">🌿</div>
+    <div class="story-quote">「回首」，是那個停下來、<br/>往內看的瞬間。</div>
+    <div class="story-body">我們相信，照顧頭皮不只是美的追求，更是對自己的溫柔回應。每一次療程，讓感官真正回家。</div>
+    <div class="story-ig">📷 return.tainan</div>
+  </div>
+</div>
+
+<div class="sec-alt">
+  <div class="sec-alt-in">
+    <div class="slbl">Info</div>
+    <div class="stitle">店家資訊</div>
+    <div class="sdiv"></div>
+    <div class="info-grid">
+      <div class="info-card"><div class="info-icon">📍</div><div class="info-title">地址</div><div class="info-body">台南市<br/>（預約後提供詳細地址）</div></div>
+      <div class="info-card"><div class="info-icon">🕙</div><div class="info-title">營業時間</div><div class="info-body">週一至週六<br/>10:00 – 18:00</div></div>
+      <div class="info-card"><div class="info-icon">📞</div><div class="info-title">聯絡</div><div class="info-body">0900-000-000<br/>return.tainan</div></div>
+      <div class="info-card"><div class="info-icon">🅿️</div><div class="info-title">停車</div><div class="info-body">附近有路邊停車<br/>可提前詢問</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <div class="cta-en">Book a Session</div>
+  <div class="cta-zh">讓感官回家，從今天開始</div>
+  <button class="cta-btn" onclick="goLogin()">線上預約</button>
+  <div class="cta-info">台南市・週一至週六 10:00–18:00</div>
+</div>
+
+<footer>
+  <div class="ft-logo">
+    <svg viewBox="0 0 24 24"><path d="M12 4C8 4 4 8 4 12s4 8 8 8"/><path d="M12 4c4 0 8 4 8 8s-4 8-8 8"/></svg>
+  </div>
+  <div class="ft-en">Return</div>
+  <div class="ft-zh">回首・感官療癒所・Since 2026</div>
+  <div class="ft-divider"></div>
+  <div class="ft-info">台南市・return.tainan・0900-000-000<br/>© 2026 Return Studio. All rights reserved.</div>
+</footer>
+
+<script>
+function goLogin(){window.location.href='return-login.html'}
+</script>
+</body>
+</html>

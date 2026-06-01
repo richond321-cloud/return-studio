@@ -1711,7 +1711,9 @@ function toast(msg){
   setTimeout(()=>t.remove(),2600);
 }
 
-setup();
+try{setup();}catch(e){
+  document.body.innerHTML='<div style="padding:40px;font-family:sans-serif;color:#A03030;background:#fff;min-height:100vh"><h2>頁面載入錯誤</h2><pre style="margin-top:16px;font-size:13px;white-space:pre-wrap">'+e.stack+'</pre></div>';
+}
 </script>
 </body>
 </html>

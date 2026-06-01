@@ -433,7 +433,7 @@ const MO=['一月','二月','三月','四月','五月','六月','七月','八月
 const PAY_NAMES={cash:'現金',card:'刷卡',transfer:'轉帳',linepay:'Line Pay'};
 const SRC={online:'線上預約',walkin:'自行來店',referral:'朋友介紹'};
 
-function loadList(k,d){try{const v=JSON.parse(localStorage.getItem(k));return Array.isArray(v)?v:v===null?d.map(x=>({...x})):d.map(x=>({...x}))}catch{return d.map(x=>({...x}))}}
+function loadList(k,d){try{const v=JSON.parse(localStorage.getItem(k));if(v===null)return Array.isArray(d)?d.map(x=>({...x})):{...d};return v;}catch{return Array.isArray(d)?d.map(x=>({...x})):{...d};}}
 function saveList(k,v){localStorage.setItem(k,JSON.stringify(v))}
 const ld=loadList,sv=saveList;
 function fmt(d){return d.toISOString().split('T')[0]}

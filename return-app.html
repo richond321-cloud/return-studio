@@ -435,6 +435,7 @@ const SRC={online:'線上預約',walkin:'自行來店',referral:'朋友介紹'};
 
 function loadList(k,d){try{const v=JSON.parse(localStorage.getItem(k));return Array.isArray(v)?v:v===null?d.map(x=>({...x})):d.map(x=>({...x}))}catch{return d.map(x=>({...x}))}}
 function saveList(k,v){localStorage.setItem(k,JSON.stringify(v))}
+const ld=loadList,sv=saveList;
 function fmt(d){return d.toISOString().split('T')[0]}
 function addD(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r}
 function gid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5)}
